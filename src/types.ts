@@ -1,44 +1,30 @@
-export type Item = {
+export type OptionItem = {
     id: string;
     label: string;
+    image?: string;
 };
 
-export type Category = {
+export type OptionCategory = {
     categoryId: string;
     categoryLabel: string;
-    isMultiple?: boolean;
-    items: Item[];
+    isMultiple: boolean;
+    items: OptionItem[];
 };
-
-export type Options = Category[];
 
 export type Selections = Record<string, string[]>;
 
-export type Containers = {
-    BaseContainer?: React.FC<{ category: Category; children: React.ReactNode }>;
-    HorizontalContainer?: React.FC<{
-        category: Category;
-        children: React.ReactNode;
-    }>;
-    ItemContainer?: React.FC<{
-        item: Item;
-        isSelected: boolean;
-        children: React.ReactNode;
-    }>;
-};
-
 export type BaseContainerProps = {
-    category: Category;
+    category: OptionCategory;
     children: React.ReactNode;
 };
 
 export type HorizontalContainerProps = {
-    category: Category;
+    category?: OptionCategory;
     children: React.ReactNode;
 };
 
 export type ItemContainerProps = {
-    item: Item;
+    item: OptionItem;
     isSelected: boolean;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 };
