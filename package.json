@@ -1,6 +1,6 @@
 {
     "name": "@takwot/suggestions-kit",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Headless suggestion options & prompt builder for image generation UIs",
     "main": "dist/index.cjs",
     "module": "dist/index.js",
@@ -32,8 +32,8 @@
         "vitest": "^4.0.8"
     },
     "peerDependencies": {
-        "react": "^19.2.0",
-        "react-dom": "^19.2.0"
+        "react": ">=18.0.0",
+        "react-dom": ">=18.0.0"
     },
     "sideEffects": false
 }
