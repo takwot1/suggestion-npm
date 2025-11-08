@@ -1,11 +1,20 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState, Dispatch, SetStateAction } from 'react';
 import { Selections } from '../types';
 
+type UseSuggestionsProps = {
+    selections?: Selections;
+    setSelections?: Dispatch<SetStateAction<Selections>>;
+};
+
 /**
- * Hook for managing selected suggestion options.
+ * Hook for managing selections (can use external state)
  */
-export const useSuggestions = (initial?: Selections) => {
-    const [selections, setSelections] = useState<Selections>(initial || {});
+export const useSuggestions = (props?: UseSuggestionsProps) => {
+    const [internalSelections, internalSetSelections] = useState<Selections>(
+        {}
+    );
+    const selections = props?.selections ?? internalSelections;
+    const setSelections = props?.setSelections ?? internalSetSelections;
 
     const toggle = useCallback(
         (categoryId: string, itemId: string, isMultiple = false) => {
@@ -22,7 +31,7 @@ export const useSuggestions = (initial?: Selections) => {
                 return { ...prev, [categoryId]: next };
             });
         },
-        []
+        [setSelections]
     );
 
     return { selections, setSelections, toggle };

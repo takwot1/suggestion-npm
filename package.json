@@ -1,6 +1,6 @@
 {
     "name": "@takwot/suggestions-kit",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Headless suggestion options & prompt builder for image generation UIs",
     "main": "dist/index.cjs",
     "module": "dist/index.js",
