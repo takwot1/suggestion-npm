@@ -1,0 +1,39 @@
+{
+    "name": "@takwot/suggestions-kit",
+    "version": "1.0.0",
+    "description": "Headless suggestion options & prompt builder for image generation UIs",
+    "main": "dist/index.cjs",
+    "module": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "test": "vitest",
+        "prepare": "npm run build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/takwot1/suggestion-npm.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/takwot1/suggestion-npm/issues"
+    },
+    "homepage": "https://github.com/takwot1/suggestion-npm#readme",
+    "devDependencies": {
+        "@types/node": "^24.10.0",
+        "@types/react": "^19.2.2",
+        "tsup": "^8.5.0",
+        "typescript": "^5.9.3",
+        "vitest": "^4.0.8"
+    },
+    "peerDependencies": {
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0"
+    },
+    "sideEffects": false
+}
