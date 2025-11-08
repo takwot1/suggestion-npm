@@ -26,3 +26,19 @@ export type Containers = {
         children: React.ReactNode;
     }>;
 };
+
+export type BaseContainerProps = {
+    category: Category;
+    children: React.ReactNode;
+};
+
+export type HorizontalContainerProps = {
+    category: Category;
+    children: React.ReactNode;
+};
+
+export type ItemContainerProps = {
+    item: Item;
+    isSelected: boolean;
+    children: React.ReactNode;
+};
