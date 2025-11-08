@@ -74,6 +74,7 @@ export const SuggestionsRenderer: React.FC<Props> = ({
                                         key={item.id}
                                         item={item}
                                         isSelected={isSelected}
+                                        category={category}
                                     />
                                 );
                             })}

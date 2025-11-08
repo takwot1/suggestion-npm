@@ -25,6 +25,7 @@ export type HorizontalContainerProps = {
 
 export type ItemContainerProps = {
     item: OptionItem;
+    category: OptionCategory;
     isSelected: boolean;
     onToggle?: () => void;
     children?: React.ReactNode;
