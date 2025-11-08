@@ -1,38 +1,35 @@
-import { useCallback, useState, Dispatch, SetStateAction } from 'react';
-import { Selections } from '../types';
+import type { Selections } from '../types';
 
 type UseSuggestionsProps = {
-    selections?: Selections;
-    setSelections?: Dispatch<SetStateAction<Selections>>;
+    selections: Selections;
+    setSelections: React.Dispatch<React.SetStateAction<Selections>>;
 };
 
-/**
- * Hook for managing selections (can use external state)
- */
-export const useSuggestions = (props?: UseSuggestionsProps) => {
-    const [internalSelections, internalSetSelections] = useState<Selections>(
-        {}
-    );
-    const selections = props?.selections ?? internalSelections;
-    const setSelections = props?.setSelections ?? internalSetSelections;
+export const useSuggestions = ({
+    selections,
+    setSelections
+}: UseSuggestionsProps) => {
+    const toggle = (
+        categoryId: string,
+        itemId: string,
+        isMultiple: boolean
+    ) => {
+        setSelections(prev => {
+            const selectedItems = prev[categoryId] || [];
 
-    const toggle = useCallback(
-        (categoryId: string, itemId: string, isMultiple = false) => {
-            setSelections(prev => {
-                const current = prev[categoryId] || [];
-                const next = isMultiple
-                    ? current.includes(itemId)
-                        ? current.filter(i => i !== itemId)
-                        : [...current, itemId]
-                    : current.includes(itemId)
-                    ? []
-                    : [itemId];
+            if (isMultiple) {
+                const exists = selectedItems.includes(itemId);
+                return {
+                    ...prev,
+                    [categoryId]: exists
+                        ? selectedItems.filter(id => id !== itemId)
+                        : [...selectedItems, itemId]
+                };
+            } else {
+                return { ...prev, [categoryId]: [itemId] };
+            }
+        });
+    };
 
-                return { ...prev, [categoryId]: next };
-            });
-        },
-        [setSelections]
-    );
-
-    return { selections, setSelections, toggle };
+    return { toggle };
 };

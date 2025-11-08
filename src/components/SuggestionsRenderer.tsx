@@ -37,47 +37,42 @@ export const SuggestionsRenderer: React.FC<Props> = ({
                 const Horizontal =
                     containers.HorizontalContainer ??
                     (({ children }: HorizontalContainerProps) => (
-                        <div>{children}</div>
+                        <div className='flex flex-wrap gap-2'>{children}</div>
                     ));
                 const Item =
                     containers.ItemContainer ??
                     (({ item, isSelected, children }: ItemContainerProps) => (
-                        <div>
-                            {children ?? (
-                                <button
-                                    className={`px-3 py-1 rounded-full border ${
-                                        isSelected
-                                            ? 'bg-blue-500 text-white'
-                                            : ''
-                                    }`}
-                                    onClick={() =>
-                                        onToggle(
-                                            category.categoryId,
-                                            item.id,
-                                            category.isMultiple
-                                        )
-                                    }
-                                >
-                                    {item.label}
-                                </button>
-                            )}
-                        </div>
+                        <button
+                            className={`px-3 py-1 rounded-full border ${
+                                isSelected ? 'bg-blue-500 text-white' : ''
+                            }`}
+                            onClick={() =>
+                                onToggle(
+                                    category.categoryId,
+                                    item.id,
+                                    category.isMultiple
+                                )
+                            }
+                        >
+                            {item.label}
+                            {children}
+                        </button>
                     ));
 
                 return (
                     <Base key={category.categoryId} category={category}>
                         <Horizontal category={category}>
-                            {category.items.map(it => {
+                            {category.items.map(item => {
                                 const selectedItems =
                                     selections[category.categoryId] || [];
                                 const isSelected = selectedItems.includes(
-                                    it.id
+                                    item.id
                                 );
 
                                 return (
                                     <Item
-                                        key={it.id}
-                                        item={it}
+                                        key={item.id}
+                                        item={item}
                                         isSelected={isSelected}
                                     />
                                 );
